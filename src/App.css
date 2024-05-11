@@ -1,38 +1,148 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.quote {
+  display: flex;
+  height: 150px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.random {
+  margin-top: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.random__container {
+  display: flex;
+}
+
+.random__button_orange {
+  background-color: rgb(255, 134, 90) !important;
+}
+
+.random__button {
+  margin: 0 20px;
+  font-family: "bestFont";
+  padding: 20px 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: aquamarine;
+  box-shadow: inset 1px 1px 1px black;
+  cursor: pointer;
+}
+
+.random__button:hover {
+  box-shadow: 1px 1px 1px black;
+}
+
+.quote__text {
+  font-size: 36px;
+  font-family: "bestFont";
+  max-width: 750px;
+}
+
+.quote__fly-text {
+  font-size: 36px;
+  font-family: "bestFont";
+  width: 750px;
+  transition: 2s;
+  animation: fly ease 2s;
+}
+
+.quote-popup {
+  position: fixed;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  width: 400px;
+  height: 250px;
+  z-index: 10;
+  border-radius: 12px;
+  border: 1px solid black;
+  transition: 1s;
 }
 
-.App-link {
-  color: #61dafb;
+.quote-popup__input {
+  border: none;
+  border-bottom: 1px solid grey;
+  margin: 10px 0;
+  padding: 10px 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.quote-popup__desc {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.popup-container {
+  position: fixed;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.5;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.popup-invis {
+  display: none;
+}
+
+.quote-popup_closing {
+  position: relative;
+}
+
+.popup__close {
+  position: absolute;
+  right: -65px;
+  top: -50px;
+  cursor: pointer;
+}
+.popup__close::before {
+  position: relative;
+  content: "\d7";
+  font-size: 44px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+@media screen and (max-width: 760px) {
+  .quote__text {
+    font-size: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  .random__button {
+    font-size: 14px;
+    padding: 12px 18px;
   }
+  .quote-popup {
+    width: 300px;
+  }
+}
+
+@keyframes fly {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY((100px));
+  }
+}
+
+@font-face {
+  font-family: "bestFont";
+  src: url(./utils/fonts/beer\ money.ttf);
+}
+@font-face {
+  font-family: "alcoFont";
+  src: url(./utils/fonts/Alcotton.ttf);
 }

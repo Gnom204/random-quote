@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { quoteType } from "./types/QuoteType";
+import "./App.css";
+import { getRandomQuery } from "./utils/api/QueryApi";
+import RandomService from "./components/RandomService";
+import QuotePopup from "./components/QuotePopup";
 
 function App() {
+  const [quote, setQuote] = useState("");
+  const [isFly, setIsFly] = useState(false);
+  const [isInvis, setIsInvis] = useState(true);
+
+  const changeInvis = () => {
+    setIsInvis(!isInvis);
+  };
+
+  const changeFly = () => {
+    setIsFly(false);
+  };
+
+  const clickHandler = () => {
+    renderQuote();
+  };
+
+  const renderQuote = () => {
+    getRandomQuery().then((res) => {
+      setQuote(res);
+      console.log(res);
+      setIsFly(true);
+    });
+    setIsFly(false);
+  };
+
+  useEffect(() => {
+    renderQuote();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QuotePopup changeInvis={changeInvis} isInvis={isInvis} />
+      <RandomService
+        changeInvis={changeInvis}
+        changeFly={changeFly}
+        isFly={isFly}
+        clickHandler={clickHandler}
+        quote={quote}
+      />
     </div>
   );
 }
