@@ -21,13 +21,13 @@ export default function RandomService({
       <Quote changeFly={changeFly} isFly={isFly} quote={quote} />
       <div className="random__container">
         <button onClick={clickHandler} className="random__button">
-          Получить цитатку
+          Получить цитату
         </button>
         <button
           onClick={changeInvis}
           className="random__button random__button_orange"
         >
-          Добавить цитатку
+          Добавить цитату
         </button>
       </div>
     </div>

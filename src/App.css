@@ -1,3 +1,6 @@
+p {
+  margin: 0;
+}
 .App {
   text-align: center;
   display: flex;
@@ -11,6 +14,10 @@
   height: 150px;
 }
 
+.error {
+  color: red;
+}
+
 .random {
   margin-top: 250px;
   display: flex;
@@ -22,6 +29,11 @@
   display: flex;
 }
 
+.random__button_s {
+  padding: 10px 0 !important;
+  width: 100px !important;
+}
+
 .random__button_orange {
   background-color: rgb(255, 134, 90) !important;
 }
@@ -30,6 +42,7 @@
   margin: 0 20px;
   font-family: "bestFont";
   padding: 20px 12px;
+  width: 140px;
   font-size: 16px;
   border-radius: 12px;
   background-color: aquamarine;
@@ -63,11 +76,12 @@
   flex-direction: column;
   background-color: rgb(255, 255, 255);
   width: 400px;
-  height: 250px;
+  height: 220px;
   z-index: 10;
   border-radius: 12px;
   border: 1px solid black;
-  transition: 1s;
+  transition: 0.7s;
+  animation: appearance 1s ease;
 }
 
 .quote-popup__input {
@@ -75,10 +89,13 @@
   border-bottom: 1px solid grey;
   margin: 10px 0;
   padding: 10px 20px;
+  border-radius: 14px;
+  background-color: rgb(231, 231, 231);
 }
 
 .quote-popup__desc {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 20px;
 }
 
 .popup-container {
@@ -100,10 +117,18 @@
   position: relative;
 }
 
+.quote-popup__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 170px;
+}
+
 .popup__close {
   position: absolute;
-  right: -65px;
-  top: -50px;
+  right: -16px;
+  top: -30px;
   cursor: pointer;
 }
 .popup__close::before {
@@ -120,10 +145,23 @@
   }
   .random__button {
     font-size: 14px;
+    width: 110px;
     padding: 12px 18px;
   }
   .quote-popup {
     width: 300px;
+  }
+  .popup__close {
+    right: 10px;
+  }
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

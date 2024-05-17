@@ -4,12 +4,12 @@ import "./Notification.css";
 type Props = {
   notType: string;
   message: string;
-  close: boolean;
+  close: () => void;
 };
 
 export function Notification({ notType, message, close }: Props) {
   const [width, setWidth] = useState(0);
-  const [exit, setExit] = useState(false);
+  const [isLeave, setIsLeave] = useState(false);
 
   const handleStartTimer = () => {
     const id = setInterval(() => {
@@ -23,28 +23,29 @@ export function Notification({ notType, message, close }: Props) {
     }, 20);
   };
 
-  const handleCloseNotification = () => {
-    setExit(true);
-  };
-
   useEffect(() => {
     handleStartTimer();
   }, []);
 
   useEffect(() => {
     if (width === 100) {
-      handleCloseNotification();
+      setIsLeave(true);
+      setTimeout(() => {
+        close();
+      }, 2000);
     }
   }, [width]);
 
   return (
-    <div
-      className={`notification-item ${
-        notType === "SUCCESS" ? "success" : "error"
-      } ${exit ? "exit" : ""}`}
-    >
-      <p>{message}</p>
-      <div className={"bar"} style={{ width: `${width}%` }}></div>
+    <div className="notification-wrapper">
+      <div
+        className={`notification-item ${
+          notType === "SUCCESS" ? "success" : "error"
+        } ${isLeave ? "exit" : ""}`}
+      >
+        <p>{message}</p>
+        <div className={"bar"} style={{ width: `${width}%` }}></div>
+      </div>
     </div>
   );
 }
